@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wawa Store - Pembayaran</title>
+    <style>
+        /* Reset dan Styling Dasar */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f0f8ff;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        /* Header dan Navigasi */
+        header {
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
+            padding: 1rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 1.5rem;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        /* Konten Utama */
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        
+        .section-title {
+            color: #1e3c72;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #2a5298;
+        }
+        
+        /* Produk Panel */
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .product-card {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        }
+        
+        .product-card h3 {
+            color: #2a5298;
+            margin-bottom: 0.5rem;
+        }
+        
+        .product-card .price {
+            font-weight: bold;
+            color: #1e3c72;
+            font-size: 1.2rem;
+            margin: 0.5rem 0;
+        }
+        
+        .product-card .btn {
+            display: inline-block;
+            background: #2a5298;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            text-decoration: none;
+            margin-top: 0.5rem;
+            transition: background-color 0.3s;
+        }
+        
+        .product-card .btn:hover {
+            background: #1e3c72;
+        }
+        
+        /* Metode Pembayaran */
+        .payment-methods {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .payment-card {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .payment-card h3 {
+            color: #2a5298;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .payment-card h3 i {
+            margin-right: 0.5rem;
+        }
+        
+        .payment-info {
+            margin-bottom: 1rem;
+        }
+        
+        .payment-info p {
+            margin-bottom: 0.5rem;
+        }
+        
+        .copy-btn {
+            background: #2a5298;
+            color: white;
+            border: none;
+            padding: 0.4rem 0.8rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .copy-btn:hover {
+            background: #1e3c72;
+        }
+        
+        /* QRIS Section */
+        .qris-section {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        .qris-title {
+            color: #2a5298;
+            margin-bottom: 1rem;
+        }
+        
+        .qris-image {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 1rem;
+            background-color: #f9f9f9;
+        }
+        
+        /* Footer */
+        footer {
+            background: #1e3c72;
+            color: white;
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        /* Responsif */
+        @media (max-width: 768px) {
+            .logo-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 1rem;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 0 0.5rem;
+            }
+            
+            .products, .payment-methods {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header dan Navigasi -->
+    <header>
+        <div class="logo-container">
+            <div class="logo">WAWA STORE</div>
+            <nav>
+                <ul>
+                    <li><a href="#produk">Produk</a></li>
+                    <li><a href="#pembayaran">Pembayaran</a></li>
+                    <li><a href="#qris">QRIS</a></li>
+                    <li><a href="#kontak">Kontak</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Konten Utama -->
+    <div class="container">
+        <!-- Produk Panel -->
+        <section id="produk">
+            <h2 class="section-title">Produk Panel</h2>
+            <div class="products">
+                <div class="product-card">
+                    <h3>PANEL: 1GB-UNLI</h3>
+                    <p>Panel dengan kuota 1GB unlimited untuk berbagai kebutuhan.</p>
+                    <div class="price">Rp 50.000</div>
+                    <a href="#" class="btn">Beli Sekarang</a>
+                </div>
+                <div class="product-card">
+                    <h3>JSA BUAT WEB PAYMET</h3>
+                    <p>Jasa pembuatan website payment dengan desain profesional.</p>
+                    <div class="price">Rp 300.000</div>
+                    <a href="#" class="btn">Beli Sekarang</a>
+                </div>
+                <div class="product-card">
+                    <h3>PT PANEL</h3>
+                    <p>Panel untuk perusahaan dengan fitur lengkap.</p>
+                    <div class="price">Rp 150.000</div>
+                    <a href="#" class="btn">Beli Sekarang</a>
+                </div>
+                <div class="product-card">
+                    <h3>OWEN PANEL</h3>
+                    <p>Panel khusus untuk pemilik usaha dengan akses penuh.</p>
+                    <div class="price">Rp 200.000</div>
+                    <a href="#" class="btn">Beli Sekarang</a>
+                </div>
+                <div class="product-card">
+                    <h3>CEO PANEL</h3>
+                    <p>Panel eksekutif dengan fitur premium.</p>
+                    <div class="price">Rp 500.000</div>
+                    <a href="#" class="btn">Beli Sekarang</a>
+                </div>
+                <div class="product-card">
+                    <h3>ADP</h3>
+                    <p>Panel ADP dengan berbagai fitur tambahan.</p>
+                    <div class="price">Rp 100.000</div>
+                    <a href="#" class="btn">Beli Sekarang</a>
+                </div>
+                <div class="product-card">
+                    <h3>STAF</h3>
+                    <p>Panel untuk staf dengan akses terbatas.</p>
+                    <div class="price">Rp 75.000</div>
+                    <a href="#" class="btn">Beli Sekarang</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Metode Pembayaran -->
+        <section id="pembayaran">
+            <h2 class="section-title">Metode Pembayaran</h2>
+            <div class="payment-methods">
+                <div class="payment-card">
+                    <h3>DANA</h3>
+                    <div class="payment-info">
+                        <p><strong>Nomor:</strong> 0881010703290</p>
+                        <p><strong>Nama:</strong> DARXXX</p>
+                    </div>
+                    <button class="copy-btn" onclick="copyToClipboard('0881010703290')">Salin Nomor</button>
+                </div>
+                <div class="payment-card">
+                    <h3>GOPAY</h3>
+                    <div class="payment-info">
+                        <p><strong>Nomor:</strong> 085328926698</p>
+                        <p><strong>Nama:</strong> WAWA</p>
+                    </div>
+                    <button class="copy-btn" onclick="copyToClipboard('085328926698')">Salin Nomor</button>
+                </div>
+                <div class="payment-card">
+                    <h3>OVO</h3>
+                    <div class="payment-info">
+                        <p><strong>Nomor:</strong> 085814448535</p>
+                        <p><strong>Nama:</strong> WAWA</p>
+                    </div>
+                    <button class="copy-btn" onclick="copyToClipboard('085814448535')">Salin Nomor</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- QRIS -->
+        <section id="qris">
+            <h2 class="section-title">Pembayaran QRIS</h2>
+            <div class="qris-section">
+                <h3 class="qris-title">Scan QR Code untuk Pembayaran</h3>
+                <p>Gunakan aplikasi pembayaran Anda untuk scan QR code di bawah ini</p>
+                <div class="qris-image">
+                    <!-- QR Code akan ditampilkan di sini -->
+                    <p>[QR Code akan ditampilkan di sini]</p>
+                    <p>File: 1000383154.jpg</p>
+                </div>
+                <p style="margin-top: 1rem;">QR Code Standar Pembayaran Nasional</p>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer id="kontak">
+        <p>&copy; 2023 Wawa Store. Semua hak dilindungi.</p>
+        <p>Hubungi kami: wa-store@example.com</p>
+    </footer>
+
+    <script>
+        // Fungsi untuk menyalin teks ke clipboard
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(function() {
+                alert('Nomor berhasil disalin: ' + text);
+            }, function(err) {
+                alert('Gagal menyalin nomor: ', err);
+            });
+        }
+    </script>
+</body>
+</html>
